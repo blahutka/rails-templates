@@ -6,7 +6,9 @@ gsub_file 'app/models/post.rb', <<-EOS.gsub(/^ /im, '')
 EOS
 
 file 'app/models/sam.rb', <<-EOS.gsub(/^ /, '')
-  obsah
+ class Category < ActiveRecord::Base
+   has_and_belongs_to_many :products
+ end
 EOS
 
 #generate(:scaffold, "price", "title:string", "body:text")
