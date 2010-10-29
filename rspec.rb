@@ -65,7 +65,7 @@ if yes?('Add Rspec setting')
   gem "cucumber-rails", :git => "git://github.com/aslakhellesoy/cucumber-rails.git", :group => [:development, :test]
   gem "cucumber", :git => "git://github.com/aslakhellesoy/cucumber.git", :group => [:development, :test]
   gem "database_cleaner", :git => 'git://github.com/bmabey/database_cleaner.git', :group => [:development, :test]  
-  gem "capybara", :group => [:development, :test]
+  #gem "capybara", :group => [:development, :test]
   gem "capybara-envjs",:group => [:development, :test]
   gem "launchy", :group => [:development, :test]
   gem "ruby-debug", :group => [:development, :test]
