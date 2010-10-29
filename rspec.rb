@@ -56,7 +56,7 @@ end
 
 if yes?('Add Rspec setting')
   gem "rspec", :group => [:development, :test]
-  gem "rspec-rails", ">= 2.0.0.beta", :group => [:development, :test]
+  #gem "rspec-rails", ">= 2.0.0.beta", :group => [:development, :test]
   gem "machinist", :git => "git://github.com/notahat/machinist.git", :group => [:development, :test]
   gem "faker",:group => [:development, :test]
   gem "ZenTest", :group => [:development, :test]
@@ -78,6 +78,15 @@ if yes?('Add Rspec setting')
 end
 
 run 'bundle install'
+
+if yes?('Run DB create?')
+  rake 'db:create'
+  rake 'db:migrate'
+end
+
+if yes?('Test cucumber?')
+  rake 'cucumber'
+end
 
 if yes?('Do you want generate something?')
   first = ask("eg. scaffold Product name:string category:references, description:text parent_id:integer")
