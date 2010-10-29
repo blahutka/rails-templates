@@ -74,7 +74,7 @@ if yes?('Add Rspec setting')
   run 'bundle install'
   run 'rvm reload'
   generate('rspec:install')
-  generate('cucumber:skeleton', '--capybara --rspec')
+  generate('cucumber:install', '--capybara --rspec')
 end
 
 run 'bundle install'
