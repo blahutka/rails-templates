@@ -73,7 +73,6 @@ if yes?('Add Rspec setting')
   generate('cucumber:install', '--capybara --rspec')
 end
 
-run 'bundle install'
 
 if yes?('Run DB create?')
   rake 'db:create'
