@@ -4,6 +4,7 @@ run "rm public/index.html"
 run "rm public/favicon.ico"
 run "rm public/images/rails.png"
 
+# From http://github.com/lleger/Rails-3-jQuery
 if yes?('Use jQuery?')
   inside('public/javascripts') do
     FileUtils.rm_rf %w(controls.js dragdrop.js effects.js prototype.js rails.js)
@@ -12,18 +13,12 @@ if yes?('Use jQuery?')
   get "http://code.jquery.com/jquery-latest.min.js", "public/javascripts/jquery.js"
   get "http://github.com/rails/jquery-ujs/raw/master/src/rails.js", "public/javascripts/rails.js"
   initializer 'jquery.rb', <<-CODE
-# Switch the javascript_include_tag :defaults to
-# use jQuery instead of the default prototype helpers.
-# Also setup a :jquery expansion, just for good measure.
-# Written by: Logan Leger, logan@loganleger.com
-# http://github.com/lleger/Rails-3-jQuery
-
-ActionView::Helpers::AssetTagHelper.register_javascript_expansion :jquery => ['jquery', 'rails']
-ActiveSupport.on_load(:action_view) do
-ActiveSupport.on_load(:after_initialize) do
-ActionView::Helpers::AssetTagHelper::register_javascript_expansion :defaults => ['jquery', 'rails']
-end
-end
+    ActionView::Helpers::AssetTagHelper.register_javascript_expansion :jquery => ['jquery', 'rails']
+    ActiveSupport.on_load(:action_view) do
+    ActiveSupport.on_load(:after_initialize) do
+      ActionView::Helpers::AssetTagHelper::register_javascript_expansion :defaults => ['jquery', 'rails']
+      end
+    end
   CODE
 end
 
@@ -72,6 +67,7 @@ if yes?('Add Rspec setting')
 
   log(:info, 'Installing gems')
   run 'bundle install'
+  run 'bundle update' #resolv gem colisions
   run 'rvm reload'
   generate('rspec:install')
   generate('cucumber:install', '--capybara --rspec')
