@@ -80,7 +80,7 @@ if yes?('Run DB create?')
 end
 
 if yes?('Test cucumber?')
-  rake 'cucumber'
+  rake 'cucumber',  :env => 'test'
 end
 
 if yes?('Do you want generate something?')
