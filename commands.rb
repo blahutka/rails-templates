@@ -1,4 +1,6 @@
-# more info http://m.onkey.org/2008/12/4/rails-templates
+# info
+# http://apidock.com/rails/Rails/TemplateRunner/file
+# http://m.onkey.org/2008/12/4/rails-templates
 #
 #
 
@@ -22,6 +24,11 @@ task :cron do
 
 end
 EOS
+
+file("lib/fun_party.rb") do
+  hostname = ask("What is the virtual hostname I should use?")
+  "vhost.name = #{hostname}"
+end
 
 append_file 'config/environments/development.rb', <<-EOS.gsub(/^ /, '')
 config.action_mailer.default_url_options = { :host => '.local' }
