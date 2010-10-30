@@ -1,9 +1,12 @@
 gem 'ParseTree', :require => 'parse_tree'
 gem 'ruby2ruby'
+gem "simple_form"
+gem 'inherited_resources', '1.1.2'
 
 in_root do
   run 'bundle install'
   run 'rvm reload'
+  run 'bundle update'
 end
 
 require 'rubygems'
@@ -25,17 +28,15 @@ def create_model(name, *arr, &block)
 end
 
 create_model :category, "title:string", "body:text" do
-     has_and_belongs_to_many :product
+     has_and_belongs_to_many :products
 end
 
 create_model :product, "title:string", "body:text" do
-     has_and_belongs_to_many :category
+     has_and_belongs_to_many :categories
 end
 
-create_model :category_product, "category_id:integer", "product_id:integer" do
-     belongs_to :product
-     belongs_to :category
-end
+generate :scaffold, 'category_id:integer product_id:integer'
+
 
 
 rake 'db:migrate'
