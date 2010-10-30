@@ -9,6 +9,10 @@ in_root do
   run 'bundle update'
 end
 
+in_root do
+  generate 'simple_form:install'
+end
+
 require 'rubygems'
 require 'parse_tree'
 require 'parse_tree_extensions'
@@ -35,7 +39,7 @@ create_model :product, "title:string", "body:text" do
      has_and_belongs_to_many :categories
 end
 
-generate :scaffold, 'category_id:integer product_id:integer'
+generate :migration, 'category_id:integer product_id:integer'
 
 
 
