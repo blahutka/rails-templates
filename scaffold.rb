@@ -1,7 +1,7 @@
 gem 'ParseTree', :require => 'parse_tree'
 gem 'ruby2ruby'
 
-in_toot do
+in_root do
   run 'bundle install'
   run 'rvm reload'
 end
