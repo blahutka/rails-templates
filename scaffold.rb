@@ -1,3 +1,9 @@
+require 'rubygems'
+require 'parse_tree'
+require 'parse_tree_extensions'
+require 'ruby2ruby'
+
+
 def set_model(name, &block)
   name = name.to_s.singularize
   sentinel = /class [a-z_:]+ < ActiveRecord::Base/i
