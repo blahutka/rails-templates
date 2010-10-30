@@ -14,7 +14,7 @@ require 'ruby2ruby'
 
 def create_model(name, *arr, &block)
   name = name.to_s.singularize
-  generate(:scaffold, name, arr)
+  generate(:scaffold, name, arr.join(' '))
   sentinel = /class [a-z_:]+ < ActiveRecord::Base/i
   data = block.to_ruby.gsub(/(^proc \{)|(\}$)/, '').strip if block_given?
 
