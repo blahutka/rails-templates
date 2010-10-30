@@ -1,3 +1,11 @@
+gem 'ParseTree', :require => 'parse_tree'
+gem 'ruby2ruby'
+
+in_toot do
+  run 'bundle install'
+  run 'rvm reload'
+end
+
 require 'rubygems'
 require 'parse_tree'
 require 'parse_tree_extensions'
