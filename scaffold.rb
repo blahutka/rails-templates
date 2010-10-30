@@ -1,7 +1,7 @@
 def set_model(name, &block)
   name = name.to_s.singularize
   sentinel = /class [a-z_:]+ < ActiveRecord::Base/i
-  data = block if block_given?
+  data = block.to_ruby if block_given?
 
   in_root do
     inject_into_file "app/models/#{name}.rb", "\n #{data}", :after => sentinel, :verbose => false
