@@ -1,4 +1,9 @@
-# To change this template, choose Tools | Templates
-# and open the template in the editor.
+gem 'mongoid', '2.0.0.beta.19'
+gem 'bson_ext'
 
-puts "Hello World"
+gem 'pg'
+gem 'acts_as_tree'
+gem "simple_form"
+gem 'inherited_resources', '1.1.2'
+gem 'has_scope'
+gem 'compass'
