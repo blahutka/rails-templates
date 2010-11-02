@@ -1,0 +1,3 @@
+Templates to setup rails application
+
+inside rails app> rake rails:template LOCATION=http://setup.rb

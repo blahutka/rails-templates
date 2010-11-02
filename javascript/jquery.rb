@@ -1,3 +1,4 @@
+log :javascript, 'settup jQuery'
 
 inside('public/javascripts') do
   FileUtils.rm_rf %w(controls.js dragdrop.js effects.js prototype.js rails.js)
