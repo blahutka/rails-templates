@@ -1,7 +1,7 @@
 # info
 # http://apidock.com/rails/Rails/TemplateRunner/file
 # http://m.onkey.org/2008/12/4/rails-templates
-#
+# http://github.com/drnic/rails-templates
 #
 
 # FILE
