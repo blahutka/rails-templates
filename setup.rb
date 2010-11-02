@@ -9,6 +9,12 @@ if yes?('New app setup? (git init, ignore)')
   load_template 'basic.rb'
 end
 
+if yes?('Debugging?')
+  if yes?('console default ?')
+    load_template 'debugging/console.rb'
+  end
+end
+
 if yes?('Setup Databases?')
   if yes?('Install MongoDB?')
     load_template 'db/mongo.rb'
