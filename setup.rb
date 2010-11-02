@@ -6,5 +6,5 @@ end
 
 
 if yes?('Install MongoDB?')
-  load File.join(File.dirname(root), File.dirname(template), "mongodb.rb")
+  require 'mongodb'
 end
