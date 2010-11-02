@@ -1,3 +1,5 @@
+#TODO add hook for rspec and mongodb
+
 if file_exist?('config/mongoid.yml')
   log :mongodb, 'Add hook cucumber'
   inside('futures/support') do
@@ -6,9 +8,10 @@ if file_exist?('config/mongoid.yml')
     Mongoid.master.collections.select do |collection|
       collection.name !~ /system/
     end.each(&:drop)
-    TXT
+      TXT
     end
   end
+
 end
 
 gem "rspec", :group => [:development, :test]
