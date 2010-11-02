@@ -6,7 +6,7 @@ gem 'inherited_resources', '1.1.2'
 in_root do
   run 'bundle install'
   run 'rvm reload'
-  run 'bundle update'
+  
 end
 
 in_root do
@@ -39,7 +39,7 @@ create_model :product, "title:string", "body:text" do
      has_and_belongs_to_many :categories
 end
 
-generate :migration, 'category_id:integer product_id:integer'
+generate :migration, 'CreateCategoriesProducts', 'category_id:integer product_id:integer'
 
 
 
