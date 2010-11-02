@@ -2,7 +2,7 @@
 # http://apidock.com/rails/Rails/TemplateRunner/file
 # http://m.onkey.org/2008/12/4/rails-templates
 # http://github.com/drnic/rails-templates
-#
+# http://rdoc.info/github/wycats/thor/master/Thor/Actions
 
 # FILE
 gsub_file 'config/deploy.rb', /set :deploy_via, :copy/, "set :deploy_via, :copy\nset :copy_compression, :zip"
