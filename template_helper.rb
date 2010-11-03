@@ -1,13 +1,17 @@
-module Rails
-  module Generators
-    module Actions
-
-      attr_accessor :stategies, :load_template
-      attr_reader :template_options, 'file_exist?'
+#module Rails
+#  module Generators
+#    module Actions
+#
+#      attr_accessor :stategies
+#      attr_reader :template_options, :file_exist?
 
       def initialize_templater
         @stategies = []
         @template_options = {}
+      end
+
+      def stategies
+        @stategies
       end
 
       def execute_stategies
@@ -39,6 +43,6 @@ module Rails
         end
       end
 
-    end
-  end
-end
+#    end
+#  end
+#end

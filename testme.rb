@@ -1,4 +1,6 @@
 gem 'cucumber-rails'
+gem 'rspec-rails'
+
 inside app_name do
   run 'bundle install'
 end

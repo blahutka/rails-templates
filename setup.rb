@@ -1,9 +1,16 @@
-apply("http://github.com/blahutka/rails-templates/raw/master/template_helper.rb")
+
 
 
 if yes?('Run scripts from github.com?')
   @remote = true
+  apply("http://github.com/blahutka/rails-templates/raw/master/template_helper.rb")
+else
+  inside destination_root do
+  apply(File.join(destination_root,'lib/rails-templates','template_helper.rb'))
+  end
 end
+
+initialize_templater
 
 if yes?('testme')
   load_template 'testme.rb'
