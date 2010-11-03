@@ -2,8 +2,8 @@ module Rails
   module Generators
     module Actions
 
-      attr_accessor :stategies
-      attr_reader :template_options
+      attr_accessor :stategies, :load_template
+      attr_reader :template_options, 'file_exist?'
 
       def initialize_templater
         @stategies = []
