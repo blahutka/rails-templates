@@ -22,13 +22,17 @@
         if @remote
           apply "http://github.com/blahutka/rails-templates/raw/master/#{template}"
         else
-          unless file_exist?('lib/rails-templates/setup.rb')
+          unless file_exist?(recipe('setup.rb'))
             git :clone =>  'git@github.com:blahutka/rails-templates.git lib/rails-templates'
           else
-            inside('lib/rails-templates'){git :pull => 'origin master'}
+            #inside(recipe('')){git :pull => 'origin master'}
           end
-          apply(File.join(destination_root,'lib/rails-templates', template))
+          apply(recipe(template))
         end
+      end
+
+      def recipe(name)
+        File.join File.dirname(__FILE__), name
       end
 
 

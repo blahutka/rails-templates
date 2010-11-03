@@ -38,7 +38,7 @@ gem "ruby-debug", :group => [:development, :test]
 
 if file_exist?('config/mongoid.yml')
   log :mongodb, 'Add hook cucumber'
-  inside('futures/support') do
+  inside('features/support') do
     file('hooks.rb') do
       <<-TXT
     Mongoid.master.collections.select do |collection|
@@ -46,6 +46,8 @@ if file_exist?('config/mongoid.yml')
     end.each(&:drop)
       TXT
     end
+    log :info, 'use_transactional_fixtures = false'
+    gsub_file 'env.rb', /(Cucumber::Rails::World.use_transactional_fixtures = true)/, '#\1'
   end
 
 end
