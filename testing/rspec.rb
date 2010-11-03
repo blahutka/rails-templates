@@ -15,7 +15,7 @@ if file_exist?('config/mongoid.yml')
 end
 
 gem "rspec", :group => [:development, :test]
-#gem "rspec-rails", ">= 2.0.0.beta", :group => [:development, :test]
+gem "rspec-rails", ">= 2.0.0.beta", :group => [:development, :test]
 gem "machinist", :git => "git://github.com/notahat/machinist.git", :group => [:development, :test]
 gem "faker",:group => [:development, :test]
 gem "ZenTest", :group => [:development, :test]
