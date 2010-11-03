@@ -1,12 +1,12 @@
 log :testing, 'Setup rspec with cucumber'
 log :info, 'test run: rake cucumber'
 
-gem "rspec", '>= 2.0.0.beta', :group => [:test]
-gem "rspec-rails", ">= 2.0.0.beta", :group => [:test]
+#gem "rspec", '>= 2.0.0.beta', :group => [:test]
+#gem "rspec-rails", ">= 2.0.0.beta", :group => [:test]
 
-gem "cucumber", :git => "git://github.com/aslakhellesoy/cucumber.git", :group => [:test]
+#gem "cucumber", :git => "git://github.com/aslakhellesoy/cucumber.git", :group => [:test]
 gem "cucumber-rails", :git => "git://github.com/aslakhellesoy/cucumber-rails.git", :group => [:test]
-
+generate('cucumber:install', '--capybara --rspec')
 
 gem "database_cleaner", :git => 'git://github.com/bmabey/database_cleaner.git', :group => [:test] 
 
@@ -25,8 +25,9 @@ gem "ruby-debug", :group => [:development, :test]
 
 run 'bundle install'
 
+
 generate('rspec:install')
-generate('cucumber:install', '--capybara --rspec')
+
 
 #TODO add hook for rspec and mongodb
 

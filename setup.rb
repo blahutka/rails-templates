@@ -1,8 +1,15 @@
 apply("http://github.com/blahutka/rails-templates/raw/master/template_helper.rb")
 
+
 if yes?('Run scripts from github.com?')
   @remote = true
 end
+
+if yes?('testme')
+  load_template 'testme.rb'
+  execute_stategies
+end
+
 
 
 if yes?('New app setup? (git init, ignore)')
