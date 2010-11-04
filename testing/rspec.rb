@@ -1,44 +1,45 @@
 log :info, 'Setup rspec with cucumber'
 log :info, 'test run: rake cucumber'
 
-#gem "rspec", '>= 2.0.0.beta', :group => [:test]
-gem "rspec-rails", ">= 2.0.0.beta", :group => [:test]
-generate('rspec:install')
-in_root do
-  run 'bundle install'
-end
+if yes?('Install Gems?')
+  #gem "rspec", '>= 2.0.0.beta', :group => [:test]
+  gem "rspec-rails", ">= 2.0.0.beta", :group => [:test]
+  generate('rspec:install')
+  in_root do
+    run 'bundle install'
+  end
 
-gem "cucumber-rails", :git => "git://github.com/aslakhellesoy/cucumber-rails.git", :group => [:test]
-generate('cucumber:install --capybara --rspec')
-in_root do
-  run 'bundle install'
-end
+  gem "cucumber-rails", :git => "git://github.com/aslakhellesoy/cucumber-rails.git", :group => [:test]
+  generate('cucumber:install --capybara --rspec')
+  in_root do
+    run 'bundle install'
+  end
 
 
 
-gem "database_cleaner", :git => 'git://github.com/bmabey/database_cleaner.git', :group => [:test] 
+  gem "database_cleaner", :git => 'git://github.com/bmabey/database_cleaner.git', :group => [:test]
 
-gem "machinist", :git => "git://github.com/notahat/machinist.git", :group => [:test]
-gem "faker",:group => [:test]
+  gem "machinist", :git => "git://github.com/notahat/machinist.git", :group => [:test]
+  gem "faker",:group => [:test]
 
-gem "ZenTest", :group => [:test]
-gem "autotest", :group => [:test]
-gem "autotest-rails", :group => [:test]
+  gem "ZenTest", :group => [:test]
+  gem "autotest", :group => [:test]
+  gem "autotest-rails", :group => [:test]
  
-#gem "capybara", :group => [:development, :test]
-gem "capybara-envjs",:group => [:test]
-gem "launchy", :group => [:test]
+  #gem "capybara", :group => [:development, :test]
+  gem "capybara-envjs",:group => [:test]
+  gem "launchy", :group => [:test]
 
-gem "ruby-debug", :group => [:development, :test]
+  gem "ruby-debug", :group => [:development, :test]
 
-
+end
 
 
 #TODO add hook for rspec and mongodb
 
 if file_exist?('config/mongoid.yml')
   log :mongodb, 'Add hook cucumber'
-  inside('futures/support') do
+  inside('features/support') do
     file('hooks.rb') do
       <<-TXT
     Mongoid.master.collections.select do |collection|
@@ -46,6 +47,8 @@ if file_exist?('config/mongoid.yml')
     end.each(&:drop)
       TXT
     end
+    log :info, 'use_transactional_fixtures = false'
+    gsub_file 'env.rb', /(Cucumber::Rails::World.use_transactional_fixtures = true)/, '#\1'
   end
 
 end
