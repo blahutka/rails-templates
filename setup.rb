@@ -60,8 +60,12 @@ if yes?('Setup Javascripts?')
 end
 
 if yes?('Setup Style sheets')
-  if yes?('Use Compass')
+  if yes?('Use Compass ruby stylesheet tools')
     load_template 'stylesheet/compass.rb'
+  end
+
+  if yes?('Use Elastic css framework')
+    load_template 'stylesheet/elastic.rb'
   end
 end
 
