@@ -23,7 +23,7 @@
           apply "http://github.com/blahutka/rails-templates/raw/master/#{template}"
         else
           unless file_exist?(recipe('setup.rb'))
-            git :clone =>  'git@github.com:blahutka/rails-templates.git lib/rails-templates'
+            #git :clone =>  'git@github.com:blahutka/rails-templates.git lib/rails-templates'
           else
             #inside(recipe('')){git :pull => 'origin master'}
           end

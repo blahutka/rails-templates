@@ -1,4 +1,5 @@
 gem "simple_form"
-generate 'simple_form:install'
 
-run 'bundle install'
+stategies << lambda do
+  generate 'simple_form:install'
+end
