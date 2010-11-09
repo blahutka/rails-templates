@@ -3,6 +3,8 @@
 # http://m.onkey.org/2008/12/4/rails-templates
 # http://github.com/drnic/rails-templates
 # http://rdoc.info/github/wycats/thor/master/Thor/Actions
+# http://github.com/fortuity/rails3-mongoid-devise/blob/master/template.rb
+# http://rdoc.info/github/rails/rails/master/Rails/Generators/Actions
 
 # FILE
 gsub_file 'config/deploy.rb', /set :deploy_via, :copy/, "set :deploy_via, :copy\nset :copy_compression, :zip"
@@ -33,7 +35,11 @@ end
 append_file 'config/environments/development.rb', <<-EOS.gsub(/^ /, '')
 config.action_mailer.default_url_options = { :host => '.local' }
 EOS
-
+inject_into_file "app/views/devise/registrations/edit.html.erb", :after => "<%= devise_error_messages! %>\n" do
+  <<-TXT
+  content
+TXT
+end
 # PLUGIN
 plugin 'rspec', :git => 'git://github.com/dchelimsky/rspec.git', :submodule => true
 
