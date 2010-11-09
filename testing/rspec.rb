@@ -1,8 +1,45 @@
+log :info, 'Setup rspec with cucumber'
+log :info, 'test run: rake cucumber'
+
+if yes?('Install Gems?')
+  #gem "rspec", '>= 2.0.0.beta', :group => [:test]
+  gem "rspec-rails", ">= 2.0.0.beta", :group => [:test]
+  generate('rspec:install')
+  in_root do
+    run 'bundle install'
+  end
+
+  gem "cucumber-rails", :git => "git://github.com/aslakhellesoy/cucumber-rails.git", :group => [:test]
+  generate('cucumber:install --capybara --rspec')
+  in_root do
+    run 'bundle install'
+  end
+
+
+
+  gem "database_cleaner", :git => 'git://github.com/bmabey/database_cleaner.git', :group => [:test]
+
+  gem "machinist", :git => "git://github.com/notahat/machinist.git", :group => [:test]
+  gem "faker",:group => [:test]
+
+  gem "ZenTest", :group => [:test]
+  gem "autotest", :group => [:test]
+  gem "autotest-rails", :group => [:test]
+ 
+  #gem "capybara", :group => [:development, :test]
+  gem "capybara-envjs",:group => [:test]
+  gem "launchy", :group => [:test]
+
+  gem "ruby-debug", :group => [:development, :test]
+
+end
+
+
 #TODO add hook for rspec and mongodb
 
 if file_exist?('config/mongoid.yml')
   log :mongodb, 'Add hook cucumber'
-  inside('futures/support') do
+  inside('features/support') do
     file('hooks.rb') do
       <<-TXT
     Mongoid.master.collections.select do |collection|
@@ -10,34 +47,13 @@ if file_exist?('config/mongoid.yml')
     end.each(&:drop)
       TXT
     end
+    log :info, 'use_transactional_fixtures = false'
+    gsub_file 'env.rb', /(Cucumber::Rails::World.use_transactional_fixtures = true)/, '#\1'
   end
 
 end
 
-gem "rspec", :group => [:development, :test]
-#gem "rspec-rails", ">= 2.0.0.beta", :group => [:development, :test]
-gem "machinist", :git => "git://github.com/notahat/machinist.git", :group => [:development, :test]
-gem "faker",:group => [:development, :test]
-gem "ZenTest", :group => [:development, :test]
-gem "autotest", :group => [:development, :test]
-gem "autotest-rails", :group => [:development, :test]
-gem "cucumber-rails", :git => "git://github.com/aslakhellesoy/cucumber-rails.git", :group => [:development, :test]
-gem "cucumber", :git => "git://github.com/aslakhellesoy/cucumber.git", :group => [:development, :test]
-gem "database_cleaner", :git => 'git://github.com/bmabey/database_cleaner.git', :group => [:development, :test]  
-#gem "capybara", :group => [:development, :test]
-gem "capybara-envjs",:group => [:development, :test]
-gem "launchy", :group => [:development, :test]
-gem "ruby-debug", :group => [:development, :test]
-
-log(:info, 'Installing gems')
-run 'bundle install'
-run 'bundle update' #resolv gem colisions
-run 'rvm reload'
-generate('rspec:install')
-generate('cucumber:install', '--capybara --rspec')
-
-
-if yes?('Run db:migrate ?')
+if yes?('run db:create db:migrate ?')
   rake 'db:create'
   rake 'db:migrate'
 end
