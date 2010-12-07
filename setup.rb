@@ -35,6 +35,9 @@ if yes?('Plugins?')
   if yes?('Plugin: InheritedResources')
     load_template 'plugin/inherited_resources.rb'
   end
+  if yes?('Plugin: InheritedResourcesViews')
+    load_template 'plugin/inherited_resources_views.rb'
+  end
   if yes?('Plugin rails_admin')
     load_template 'plugin/rails_admin.rb'
   end
@@ -49,6 +52,9 @@ end
 if yes?('Javascripts?')
   if yes?('jQuery?')
     load_template 'javascript/jquery.rb'
+  end
+  if yes?('Jelly Pivotal')
+    load_template 'javascript/jelly.rb'
   end
 end
 
@@ -74,12 +80,13 @@ if yes?('Debugging?')
   end
 end
 
-if yes? 'RUN ALL'
+if yes? 'RUN ALL? :'
   in_root do
     gsub_file 'Gemfile', /gem "".*/, '' #remove empty gem
     run 'bundle install'
-    run 'bundle update'
+    #run 'bundle update'
   end
-
-  execute_stategies
+  if yes? 'now run BUNDEL INSTALL then continue :'
+    execute_stategies
+  end
 end
